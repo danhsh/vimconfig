@@ -1,5 +1,7 @@
 " Daniel Ho 2016 Vimrc
 
+" set line number
+set number
 
 " for starting up install plugin
 execute pathogen#infect()
@@ -8,10 +10,28 @@ execute pathogen#infect()
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" ctrl+n toggle 
+" ctrl+n toggle
 map <C-n> :NERDTreeToggle<CR>
 
-" show hidden files (shift+i) hotkey 
+" firefox
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
+inoremap <C-S-w>   <Esc>:tabclose<CR>
+
+" syntax highlighting
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_contrast="normal"
+let g:solarized_visibility="high"
+colorscheme solarized
+
+" show hidden files (shift+i) hotkey
 let NERDTreeShowHidden=1
 
 set autochdir
@@ -70,3 +90,5 @@ set cursorcolumn "highlight the current column. Visible in GUI mode only.
 :nmap <C-t> :tabnew<CR>
 :imap <C-t> <Esc>:tabnew<CR>
 
+" Automatically remove trailing whitespaces for when saving
+autocmd BufWritePre * :%s/\s\+$//e
